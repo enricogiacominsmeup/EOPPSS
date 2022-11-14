@@ -1,0 +1,1 @@
+get-messagetrackinglog -EventId SEND  | Select-object -Property timestamp,SourceContext,eventid,Source,Messageid,MessageSubject,sender,@{Name=’recipients‘;Expression={[string]::join(“;”, ($_.recipients))}},clientip,clienthostname,serverip,serverhostname,messageinfo,@{Name=’RecipientStatus‘;Expression={[string]::join(“;”, ($_.RecipientStatus))}} | export-csv C:\agg\message_log.csv
